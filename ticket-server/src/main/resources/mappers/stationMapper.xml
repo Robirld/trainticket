@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trainticket.dao.TimeTableDao">
+    <select id="findTimeTable" resultType="com.trainticket.entity.TimeTable" parameterType="com.trainticket.entity.Train">
+        select * from timetable tt
+        inner join (
+            select tt1.train_number, tt1.train_date from timetable tt1
+            where tt1.station_id = #{leaveStationId} and tt1.id in (
+                select min(tt2.id) from timetable tt2
+                where tt2.station_id in (#{leaveStationId},#{arriveStationId})
+                group by tt2.train_number,tt2.train_date
+                having count(*) = 2 and min(tt2.leave_time) > #{minDate} and min(tt2.leave_time) &lt; #{maxDate}
+            )
+        ) tmp on tt.train_number = tmp.train_number and tt.train_date = tmp.train_date;
+    </select>
+</mapper>

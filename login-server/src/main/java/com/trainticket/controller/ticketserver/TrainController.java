@@ -31,7 +31,7 @@ public class TrainController {
             return trainService.searchTrain(train);
         }catch (Exception e){
             log.error("## 请求ticket-server出错：{}",e.getMessage());
-            return new TtResponse<>(500, "服务器出错", null);
+            return new TtResponse<>(500, "服务器错误，请稍后重试！", null);
         }
     }
 }

@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author user
@@ -19,9 +21,10 @@ public class Train {
     private String startCity;
     private String endCity;
     private Date rideDate;
-    private String leaveStation;
-    private String arriveStation;
+    private Station leaveStation;
+    private Station arriveStation;
     private Date leaveTime;
     private Date arriveTime;
     private Spend spend;
+    private List<TimeTable> timeTables = new ArrayList<>();
 }

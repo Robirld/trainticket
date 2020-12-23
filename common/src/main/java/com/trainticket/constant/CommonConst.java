@@ -7,4 +7,5 @@ package com.trainticket.constant;
  */
 public interface CommonConst {
     String TT_TOKEN_KEY = "TT_token";
+    int DAY_TO_SECONDS = 24*3600;
 }
