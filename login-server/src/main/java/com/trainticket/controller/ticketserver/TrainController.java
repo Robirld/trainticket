@@ -30,7 +30,7 @@ public class TrainController {
         try {
             return trainService.searchTrain(train);
         }catch (Exception e){
-            log.error("## 请求ticket-server出错：{}",e.getMessage());
+            log.error("## 请求ticket-server出错：{}",e);
             return new TtResponse<>(500, "服务器错误，请稍后重试！", null);
         }
     }

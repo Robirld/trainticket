@@ -27,4 +27,5 @@ public class Train {
     private Date arriveTime;
     private Spend spend;
     private List<TimeTable> timeTables = new ArrayList<>();
+    private int ticketAmount;
 }

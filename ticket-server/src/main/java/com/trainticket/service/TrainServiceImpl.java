@@ -57,14 +57,22 @@ public class TrainServiceImpl implements TrainService {
             t.setRideDate(train.getRideDate());
             t.setStartCity(train.getStartCity());
             t.setEndCity(train.getEndCity());
-            t.getTimeTables().forEach(tt -> {
-                if (tt.getStation().getId() == t.getLeaveStation().getId()){
-                    t.setLeaveTime(tt.getLeave_time());
+            boolean flag = false;
+            for (TimeTable timeTable : t.getTimeTables()){
+                if (timeTable.getStation().getId() == t.getLeaveStation().getId()){
+                    t.setLeaveTime(timeTable.getLeave_time());
+                    t.setTicketAmount(timeTable.getCurrent_tickit_num());
+                    flag = true;
+                    continue;
                 }
-                if (tt.getStation().getId() == t.getArriveStation().getId()){
-                    t.setArriveTime(tt.getArrive_time());
+                if (timeTable.getStation().getId() == t.getArriveStation().getId()){
+                    t.setArriveTime(timeTable.getArrive_time());
+                    break;
                 }
-            });
+                if (flag){
+                    t.setTicketAmount(t.getTicketAmount() < timeTable.getCurrent_tickit_num() ? t.getTicketAmount() : timeTable.getCurrent_tickit_num());
+                }
+            }
             int spendS = (int) ((t.getArriveTime().getTime() - t.getLeaveTime().getTime()) / 1000);
             Spend spend = new Spend();
             spend.setDay(spendS / CommonConst.DAY_TO_SECONDS);

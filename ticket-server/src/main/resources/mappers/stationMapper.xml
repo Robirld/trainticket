@@ -8,7 +8,7 @@
         <result property="leave_time" column="leave_time"/>
         <result property="arrive_time" column="arrive_time"/>
         <result property="wait_time" column="wait_time"/>
-        <result property="wait_time" column="current_tickit_num"/>
+        <result property="current_tickit_num" column="current_tickit_num"/>
         <association property="station" javaType="com.trainticket.entity.Station">
             <result property="id" column="station_id"/>
             <result property="name" column="station_name"/>
@@ -28,6 +28,6 @@
                 having count(*) = 2 and min(tt2.leave_time) > #{minDate} and min(tt2.leave_time) &lt; #{maxDate}
             )
         ) tmp on tt.train_number = tmp.train_number and tt.train_date = tmp.train_date
-        left join station s on tt.station_id = s.id;
+        left join station s on tt.station_id = s.id order by tt.id;
     </select>
 </mapper>
