@@ -1,13 +1,12 @@
 package com.trainticket.controller;
 
-import com.trainticket.entity.Train;
+import com.trainticket.entity.Passenger;
 import com.trainticket.entity.TtResponse;
-import com.trainticket.service.TrainService;
-import com.trainticket.utils.DateUtil;
+import com.trainticket.service.PassengerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,23 +14,23 @@ import java.util.List;
 
 /**
  * @Author user
- * @Date 2020/12/18 7:54 PM
+ * @Date 2020/12/24 6:12 PM
  * @Version 1.0
  */
 @RestController
-@RequestMapping("/train")
+@RequestMapping("/passenger")
 @Slf4j
-public class TrainController {
-    @Autowired
-    TrainService trainService;
+public class PassengerController {
 
-    @PostMapping("/search")
-    public TtResponse<List<Train>> searchTrain(@RequestBody Train train){
+    @Autowired
+    PassengerService passengerService;
+
+    @PostMapping("/list")
+    public TtResponse<List<Passenger>> getPassengers(@CookieValue("TT_token") String token){
         try {
-            List<Train> trains = trainService.searchTrain(train);
-            return new TtResponse<>(200, "success", trains);
+            return new TtResponse<>(200, "success", passengerService.findByCustomerId(token));
         }catch (Exception e){
-            log.error("## 获取车次信息失败：{},{}", train, e);
+            log.error("## 获取乘客信息失败：token-{},error-{}", token, e);
             return new TtResponse<>(500, "服务器错误，请稍后重试！", null);
         }
     }

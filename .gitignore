@@ -11,3 +11,7 @@
 /**.iml
 /classes/
 /.idea/
+/common/common.iml
+/login-server/login-server.iml
+/register-center/register-center.iml
+/ticket-server/ticket-server.iml

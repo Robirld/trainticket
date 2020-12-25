@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trainticket.dao.TimeTableDao">
+    <resultMap id="timeTableRes" type="com.trainticket.entity.TimeTable">
+        <id property="id" column="id"/>
+        <result property="train_number" column="train_number"/>
+        <result property="train_date" column="train_date"/>
+        <result property="leave_time" column="leave_time"/>
+        <result property="arrive_time" column="arrive_time"/>
+        <result property="wait_time" column="wait_time"/>
+        <result property="current_tickit_num" column="current_tickit_num"/>
+        <association property="station" javaType="com.trainticket.entity.Station">
+            <result property="id" column="station_id"/>
+            <result property="name" column="station_name"/>
+        </association>
+    </resultMap>
+    <select id="findTimeTable" resultMap="timeTableRes" parameterType="com.trainticket.entity.Train">
+        select
+        tt.id,tt.train_number,tt.train_date,tt.station_id,tt.leave_time,tt.arrive_time,tt.wait_time,tt.current_tickit_num,
+        s.name as station_name
+        from timetable tt
+        inner join (
+            select tt1.train_number, tt1.train_date from timetable tt1
+            where tt1.station_id = #{leaveStationId} and tt1.id in (
+                select min(tt2.id) from timetable tt2
+                where tt2.station_id in (#{leaveStationId},#{arriveStationId})
+                group by tt2.train_number,tt2.train_date
+                having count(*) = 2 and min(tt2.leave_time) > #{minDate} and min(tt2.leave_time) &lt; #{maxDate}
+            )
+        ) tmp on tt.train_number = tmp.train_number and tt.train_date = tmp.train_date
+        left join station s on tt.station_id = s.id order by tt.id;
+    </select>
+</mapper>
