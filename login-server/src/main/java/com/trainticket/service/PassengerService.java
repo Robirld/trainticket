@@ -1,6 +1,6 @@
 package com.trainticket.service;
 
-import com.trainticket.dao.PassengerDao;
+import com.trainticket.dao.login.PassengerDao;
 import com.trainticket.entity.CustomUser;
 import com.trainticket.entity.Passenger;
 import org.springframework.beans.factory.annotation.Autowired;

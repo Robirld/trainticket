@@ -4,7 +4,6 @@ import com.trainticket.config.security.TtPasswordEncoder;
 import com.trainticket.entity.CustomUser;
 import com.trainticket.service.CustomUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 

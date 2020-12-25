@@ -1,6 +1,5 @@
-package com.trainticket.dao;
+package com.trainticket.dao.main;
 
-import com.trainticket.entity.TimeTable;
 import com.trainticket.entity.Train;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;

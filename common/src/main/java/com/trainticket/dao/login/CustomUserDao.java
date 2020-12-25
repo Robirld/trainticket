@@ -1,7 +1,6 @@
-package com.trainticket.dao;
+package com.trainticket.dao.login;
 
 import com.trainticket.entity.CustomUser;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;

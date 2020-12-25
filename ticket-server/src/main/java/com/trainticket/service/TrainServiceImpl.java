@@ -1,8 +1,8 @@
 package com.trainticket.service;
 
 import com.trainticket.constant.CommonConst;
-import com.trainticket.dao.TimeTableDao;
-import com.trainticket.dao.TrainDao;
+import com.trainticket.dao.main.TimeTableDao;
+import com.trainticket.dao.main.TrainDao;
 import com.trainticket.entity.Spend;
 import com.trainticket.entity.TimeTable;
 import com.trainticket.entity.Train;

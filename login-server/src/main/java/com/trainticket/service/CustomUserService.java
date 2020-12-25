@@ -1,7 +1,7 @@
 package com.trainticket.service;
 
 import com.trainticket.config.security.TtPasswordEncoder;
-import com.trainticket.dao.CustomUserDao;
+import com.trainticket.dao.login.CustomUserDao;
 import com.trainticket.entity.CustomUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

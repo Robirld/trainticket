@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.trainticket.dao.main.OrderDao">
-    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.trainticket.entity.Order">
-        insert into
-        tt_order (customer_id,passenger_id,train_number,leave_station_id,arrive_station_id,leave_time,arrive_time,price)
-        values (#{customer_id},#{passenger_id},#{train_number},#{leave_station_id},#{arrive_station_id},#{leave_time},#{arrive_time},#{price});
-    </insert>
-</mapper>
