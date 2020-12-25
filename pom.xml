@@ -12,6 +12,7 @@
     <module>login-server</module>
     <module>common</module>
     <module>ticket-server</module>
+      <module>order-server</module>
   </modules>
 
   <packaging>pom</packaging>

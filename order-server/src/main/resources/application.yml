@@ -1,0 +1,58 @@
+server:
+  port: 1238
+
+spring:
+  application:
+    name: order-server
+  datasource:
+    druid:
+      db1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/tt_main?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+        username: root
+        password: 12345687
+        initial-size: 5
+        max-active: 20
+        min-idle: 0
+        max-wait: 6000
+      db2:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/tt_login?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+        username: root
+        password: 12345687
+        initial-size: 5
+        max-active: 20
+        min-idle: 0
+        max-wait: 6000
+        validationQuery: SELECT 1 from dual
+        testWhileIdle: true
+        testOnBorrow: true
+        testOnReturn: false
+
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 20
+        max-wait: 30000
+        max-idle: 8
+        min-idle: 0
+    timeout: 10000
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  instance:
+    instance-id: order-server-1238
+    appname: ${spring.application.name}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:1231/eureka
