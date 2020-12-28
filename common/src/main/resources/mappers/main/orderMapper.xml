@@ -6,4 +6,12 @@
         tt_order (customer_id,passenger_id,train_number,leave_station_id,arrive_station_id,leave_time,arrive_time,price)
         values (#{customer_id},#{passenger_id},#{train_number},#{leave_station_id},#{arrive_station_id},#{leave_time},#{arrive_time},#{price});
     </insert>
+
+    <select id="findByPsIdTime" resultType="com.trainticket.entity.Order">
+        select * from tt_order
+        where del_flag = 0
+        and passenger_id = #{passenger_id}
+        and leave_time &lt;= #{arrive_time}
+        and arrive_time >= #{leave_time};
+    </select>
 </mapper>
