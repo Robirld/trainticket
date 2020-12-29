@@ -2,7 +2,7 @@ package com.trainticket.controller.ticketserver;
 
 import com.trainticket.entity.Train;
 import com.trainticket.entity.TtResponse;
-import com.trainticket.service.ticketserver.TrainService;
+import com.trainticket.feign.ticketserver.TrainService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

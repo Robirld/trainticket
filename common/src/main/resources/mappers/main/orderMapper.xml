@@ -3,14 +3,16 @@
 <mapper namespace="com.trainticket.dao.main.OrderDao">
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.trainticket.entity.Order">
         insert into
-        tt_order (customer_id,passenger_id,train_number,leave_station_id,arrive_station_id,leave_time,arrive_time,price)
-        values (#{customer_id},#{passenger_id},#{train_number},#{leave_station_id},#{arrive_station_id},#{leave_time},#{arrive_time},#{price});
+        tt_order (customer_id,passenger_id,train_number,leave_station_id,arrive_station_id,leave_time,arrive_time,price,status)
+        values
+        (#{customer_id},#{passenger_id},#{train_number},#{leave_station_id},#{arrive_station_id},#{leave_time},#{arrive_time},#{price},#{status});
     </insert>
 
     <select id="findByPsIdTime" resultType="com.trainticket.entity.Order">
         select * from tt_order
-        where del_flag = 0
-        and passenger_id = #{passenger_id}
+        where passenger_id = #{passenger_id}
+        and del_flag = 0
+        and status in (0,1,5)
         and leave_time &lt;= #{arrive_time}
         and arrive_time >= #{leave_time};
     </select>

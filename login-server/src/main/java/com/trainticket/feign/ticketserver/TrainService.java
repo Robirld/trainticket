@@ -1,4 +1,4 @@
-package com.trainticket.service.ticketserver;
+package com.trainticket.feign.ticketserver;
 
 import com.trainticket.entity.Train;
 import com.trainticket.entity.TtResponse;

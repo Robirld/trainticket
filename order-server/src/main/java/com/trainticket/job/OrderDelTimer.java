@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @Date 2020/12/28 7:49 PM
  * @Version 1.0
  */
-//@Component
+@Component
 @Slf4j
 public class OrderDelTimer {
     @Autowired
@@ -28,12 +28,14 @@ public class OrderDelTimer {
             try {
                 Thread.sleep(gap * 60000);
                 Order order = orderDao.findById(id);
-                if (order != null && order.getPay_time() != null){
+                if (order != null && order.getPay_time() == null){
                     orderDao.delete(id);
+                    log.info("## 取消逾期未支付订单：{}",order);
                 }
             } catch (Exception e) {
                 log.error("## 删除未支付订单线程异常：id=>{}, error=>{}", id, ExceptionUtils.getStackTrace(e));
             }
         });
+        thread.start();
     }
 }

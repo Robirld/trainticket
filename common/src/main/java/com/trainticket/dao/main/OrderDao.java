@@ -1,9 +1,9 @@
 package com.trainticket.dao.main;
 
 import com.trainticket.entity.Order;
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -25,6 +25,6 @@ public interface OrderDao {
     @Select("select * from tt_order where id = #{id} and del_flag = 0")
     Order findById(@Param("id") Integer id);
 
-    @Delete("delete from tt_order where id = #{id}")
+    @Update("update tt_order set status = 2 where id = #{id}")
     void delete(@Param("id") Integer id);
 }

@@ -14,7 +14,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableEurekaClient
 @MapperScan(basePackages = {"com.trainticket.dao"})
-@EnableFeignClients(basePackages = {"com.trainticket.service.ticketserver"})
+@EnableFeignClients(basePackages = {"com.trainticket.feign"})
 public class LoginApp {
     public static void main(String[] args) {
         SpringApplication.run(LoginApp.class,args);

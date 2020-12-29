@@ -16,13 +16,6 @@ spring:
         max-idle: 8
         min-idle: 0
     timeout: 10000
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
-    publisher-confirm-type: correlated
-    publisher-returns: true
 
 eureka:
   instance:
@@ -33,3 +26,12 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://127.0.0.1:1231/eureka
+
+feign:
+  client:
+    config:
+      default:
+        #建立连接所用的时间，适用于网络状况正常的情况下，两端连接所需要的时间
+        ConnectTimeOut: 5000
+        #指建立连接后从服务端读取到可用资源所用的时间
+        ReadTimeOut: 30000

@@ -6,7 +6,6 @@ package com.trainticket.constant;
  * @Version 1.0
  */
 public interface MQConst {
-    String ORDER_UPLOAD = "order_upload";
-    String ORDER_UPLOAD_ROUTE = "order.upload";
-    String PAY_QUEUE = "pay_info";
+    String PAY_QUEUE = "payment_order";
+    String PAY_ROUTE = "payment.route";
 }
